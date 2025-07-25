@@ -2,7 +2,7 @@ services:
   - type: web
     name: financeApp
     env: java
-    buildCommand: chmod +x mvnw && ./mvnw clean install
+    buildCommand: mvn install
     startCommand: java -jar target/financeApp-0.0.1-SNAPSHOT.jar
     envVars:
       - key: SPRING_DATASOURCE_URL
