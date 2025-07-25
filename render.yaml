@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: finance-api
+    env: java
+    buildCommand: mvn clean install
+    startCommand: java -jar target/Finance-1.0-SNAPSHOT.jar
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://db.abcxyz.supabase.co:5432/postgres
+      - key: SPRING_DATASOURCE_USERNAME
+        value: postgres
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: LEOgomes0605
