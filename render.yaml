@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: finance-api
+    name: financeApp
     env: java
-    buildCommand: mvn clean install
-    startCommand: java -jar target/Finance-1.0-SNAPSHOT.jar
+    buildCommand: chmod +x mvnw && ./mvnw clean install
+    startCommand: java -jar target/financeApp-0.0.1-SNAPSHOT.jar
     envVars:
       - key: SPRING_DATASOURCE_URL
         value: jdbc:postgresql://db.abcxyz.supabase.co:5432/postgres
