@@ -21,8 +21,6 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    //Adicionado o jsonignore para evitar exposicao de senha no retorno da api
-    @JsonIgnore
     @Column(nullable = false, length = 100)
     private String senha;
 }
