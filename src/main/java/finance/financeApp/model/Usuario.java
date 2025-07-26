@@ -1,10 +1,8 @@
 package finance.financeApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -23,6 +21,8 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
+    //Adicionado o jsonignore para evitar exposicao de senha no retorno da api
+    @JsonIgnore
     @Column(nullable = false, length = 100)
     private String senha;
 }
