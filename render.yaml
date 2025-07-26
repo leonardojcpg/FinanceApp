@@ -2,12 +2,14 @@ services:
   - type: web
     name: financeApp
     env: java
-    buildCommand: mvn install
+    buildCommand: mvn clean install
     startCommand: java -jar target/financeApp-0.0.1-SNAPSHOT.jar
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://db.abcxyz.supabase.co:5432/postgres
+        value: jdbc:postgresql://ep-crimson-river-acv71qp5-pooler.sa-east-1.aws.neon.tech:5432/neondb?sslmode=require
       - key: SPRING_DATASOURCE_USERNAME
-        value: postgres
+        value: neondb_owner
       - key: SPRING_DATASOURCE_PASSWORD
-        value: LEOgomes0605
+        value: npg_4AOlCaLRI3MK
+      - key: JWT_SECRET
+        value: Antonella190923
