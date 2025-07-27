@@ -1,5 +1,6 @@
 package finance.financeApp.service;
 
+import finance.financeApp.dto.RegisterRequest;
 import finance.financeApp.model.Usuario;
 import finance.financeApp.repository.UsuarioRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,5 +43,13 @@ public class UsuarioService
 
     public void delete(UUID id) {
         repo.deleteById(id);
+    }
+
+    public Usuario register(RegisterRequest request) {
+        Usuario usuario = new Usuario();
+        usuario.setNome(request.getNome());
+        usuario.setEmail(request.getEmail());
+        usuario.setSenha(passwordEncoder.encode(request.getSenha()));
+        return repo.save(usuario);
     }
 }

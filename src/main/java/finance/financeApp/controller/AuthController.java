@@ -1,5 +1,6 @@
 package finance.financeApp.controller;
 
+import finance.financeApp.dto.RegisterRequest;
 import finance.financeApp.model.Usuario;
 import finance.financeApp.service.AuthService;
 import finance.financeApp.service.UsuarioService;
@@ -10,6 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin
 public class AuthController {
 
     private final AuthService authService;
@@ -23,6 +25,12 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<Usuario> register(@RequestBody Usuario usuario) {
         return ResponseEntity.ok(usuarioService.save(usuario));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<Usuario> register(@RequestBody RegisterRequest request) {
+        Usuario novoUsuario = usuarioService.register(request);
+        return ResponseEntity.ok(novoUsuario);
     }
 
     @PostMapping("/login")
