@@ -21,16 +21,16 @@ public class UsuarioController {
         return service.findAll();
     }
 
+    @PostMapping
+    public Usuario criar(@RequestBody Usuario usuario) {
+        return service.save(usuario);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscar(@PathVariable UUID id) {
         return service.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping("/usuarios")
-    public Usuario criar(@RequestBody Usuario usuario) {
-        return service.save(usuario);
     }
 
     @PutMapping("/{id}")
