@@ -30,13 +30,15 @@ public class UsuarioService
         return repo.findById(id);
     }
 
-    public Usuario save(Usuario usuario)
-    {
-        String senhaCriptografada = null;
+    public Usuario save(Usuario usuario) {
+        if (usuario.getSenha() == null || usuario.getSenha().isBlank()) {
+            throw new IllegalArgumentException("Senha não pode ser nula ou vazia");
+        }
+        if (usuario.getEmail() == null || usuario.getEmail().isBlank()) {
+            throw new IllegalArgumentException("Email não pode ser nulo ou vazio");
+        }
 
-        // Criptografa a senha antes de salvar
-        senhaCriptografada = passwordEncoder.encode(usuario.getSenha());
-        usuario.setSenha(senhaCriptografada);
+        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         return repo.save(usuario);
     }
 
