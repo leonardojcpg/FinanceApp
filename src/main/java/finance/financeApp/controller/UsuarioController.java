@@ -28,7 +28,7 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/usuarios")
     public Usuario criar(@RequestBody Usuario usuario) {
         return service.save(usuario);
     }
