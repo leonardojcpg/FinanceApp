@@ -15,27 +15,37 @@ public class UsuarioService {
     private final UsuarioRepository repo;
     private final PasswordEncoder passwordEncoder;
 
-    public List<Usuario> findAll() {
+    public List<Usuario> findAll()
+    {
         return repo.findAll();
     }
 
-    public Optional<Usuario> findById(UUID id) {
+    public Optional<Usuario> findById(UUID id)
+    {
         return repo.findById(id);
     }
 
-    public Usuario save(Usuario usuario) {
-        if (usuario.getSenha() == null || usuario.getSenha().isBlank()) {
+    public Usuario save(Usuario usuario)
+    {
+        if (usuario.getSenha() == null || usuario.getSenha().isBlank())
+        {
             throw new IllegalArgumentException("Senha não pode ser nula ou vazia");
         }
-        if (usuario.getEmail() == null || usuario.getEmail().isBlank()) {
+        if (usuario.getEmail() == null || usuario.getEmail().isBlank())
+        {
             throw new IllegalArgumentException("Email não pode ser nulo ou vazio");
+        }
+        if (usuario.getNome() == null || usuario.getNome().isBlank())
+        {
+            throw new IllegalArgumentException("O campo nome não pode ser vazio");
         }
 
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         return repo.save(usuario);
     }
 
-    public void delete(UUID id) {
+    public void delete(UUID id)
+    {
         repo.deleteById(id);
     }
 }
