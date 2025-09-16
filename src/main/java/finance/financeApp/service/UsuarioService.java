@@ -2,28 +2,24 @@ package finance.financeApp.service;
 
 import finance.financeApp.model.Usuario;
 import finance.financeApp.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UsuarioService
-{
+@RequiredArgsConstructor
+public class UsuarioService {
     private final UsuarioRepository repo;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository repo)
-    {
-        this.repo = repo;
-    }
-
-    public List<Usuario> findAll()
-    {
+    public List<Usuario> findAll() {
         return repo.findAll();
     }
 
-    public Optional<Usuario> findById(UUID id)
-    {
+    public Optional<Usuario> findById(UUID id) {
         return repo.findById(id);
     }
 
@@ -35,6 +31,7 @@ public class UsuarioService
             throw new IllegalArgumentException("Email não pode ser nulo ou vazio");
         }
 
+        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         return repo.save(usuario);
     }
 
